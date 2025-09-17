@@ -1,11 +1,15 @@
-import React from 'react'
+import Header from "@/components/layout/Header";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const index = (props: Props) => {
   return (
-    <div>index</div>
-  )
-}
+    <>
+      <Header />
+      <div>index</div>
+    </>
+  );
+};
 
-export default index
+export default index;
