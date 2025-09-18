@@ -4,10 +4,10 @@ import UserCard from "@/components/common/UserCard";
 import Header from "@/components/layout/Header";
 
 interface UsersPageProps {
-  users: UserProps[];
+  posts: UserProps[];
 }
 
-const Users: React.FC<UsersPageProps> = ({ users }) => {
+const Users: React.FC<UsersPageProps> = ({ posts }) => {
   return (
     <>
       <Header />
@@ -16,7 +16,7 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
 
         {/* Grid for all user cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {users.map((user) => (
+          {posts.map((user) => (
             <UserCard key={user.id} {...user} />
           ))}
         </div>
@@ -24,16 +24,15 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
     </>
   );
 };
-
-export const getStaticProps: GetStaticProps = async () => {
+export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
-  const users: UserProps[] = await response.json();
+  const posts = await response.json();
 
   return {
     props: {
-      users, // ensure prop name matches Users component
+      posts, // ensure this matches the prop expected by your Users component
     },
   };
-};
+}
 
 export default Users;
